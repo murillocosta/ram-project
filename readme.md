@@ -3,3 +3,12 @@
 </div>
 
   # Rick and Morty API
+
+#### 👩🏾‍💻 Developed by:
+- [Letícia Pardini](https://github.com/leticiapardini)
+- [Murillo Costa](https://github.com/murillocosta)
+- [Ruan Carlo](https://github.com/murillocosta)
+
+#### 🔧 Developed using:
+
+![image](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
