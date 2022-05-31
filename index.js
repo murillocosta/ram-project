@@ -1,11 +1,16 @@
 const http = require('http');
 const log = require('./src/utils/log')
 const routes = require('./src/routes')
+const urlEncode = require('url')
+const qs = require('querystring')
 
 const server = http.createServer((request, response) => {
     const { url } = request
-    log.request(url)    
-    routes[url](request, response)
+    const { pathname, query } = urlEncode.parse(url)
+    log.request(pathname)
+    const queryParsed = qs.parse(query)
+    request.queryParams = queryParsed
+    routes[pathname](request, response)
 })
 // TODO 1h07min
 
