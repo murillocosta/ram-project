@@ -13,7 +13,6 @@ const server = http.createServer((request, response) => {
     request.queryParams = queryParsed
     routes[pathname](request, response)
 })
-// TODO 1h07min
 
 const PORT = 3000
 server.listen(PORT, () => console.log(`~* Server listening on port ${PORT} *~`))
