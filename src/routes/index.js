@@ -1,10 +1,9 @@
 const PersonagensController = require("../controllers/personagens-controller");
 
 module.exports = {
-    '/rickyandmorty': PersonagensController.listTodosPersonagens,
-    '/rickyandmorty/personagem-nome': PersonagensController.listPersonagensPorNome,
-    '/rickyandmorty/personagem-id': PersonagensController.listPersonagensPorId,
-    '/rickyandmorty/personagens-status': PersonagensController.listPersonagensPorStatus,
-    '/rickyandmorty/personagens-genero': PersonagensController.listPersonagensPorGenero,
-    
+    '/rickandmorty': PersonagensController.listTodosPersonagens,
+    '/rickandmorty/personagem-nome': PersonagensController.listPersonagensPorNome,
+    '/rickandmorty/personagem-id': PersonagensController.listPersonagensPorId,
+    '/rickandmorty/personagens-status': PersonagensController.listPersonagensPorStatus,
+    '/rickandmorty/personagens-genero': PersonagensController.listPersonagensPorGenero,    
 }
