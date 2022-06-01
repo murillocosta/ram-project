@@ -5,6 +5,7 @@ const urlEncode = require('url')
 const qs = require('querystring')
 
 const server = http.createServer((request, response) => {
+
     const { url } = request
     const { pathname, query } = urlEncode.parse(url)
     log.request(pathname)
