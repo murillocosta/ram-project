@@ -10,13 +10,13 @@ Requisitos obrigatórios:
 * Personagens:
  => Listar os personagens e permitir o uso de PAGINAÇÃO e o uso de filtros. 
 * Filtros que devem estar disponíveis:
- => Listar os personagens por status (Vivo ou morto) (ok)
+ => Listar os personagens por status (Vivo ou morto) ✔
  => Listar os personagens por espécie
  => Listar personagens por origem 
- => Listar personagens por gênero (ok)
- => Buscar personagem por nome (ok) 
- => Buscar personagem por id (ok)
- => Buscar personagem por gênero (ok)
+ => Listar personagens por gênero  ✔
+ => Buscar personagem por nome  ✔
+ => Buscar personagem por id  ✔
+ => Buscar personagem por gênero ✔
 * Criar uma rota SEPARADA para gerar um documento em uma pasta na raiz do projeto com o nome "tmp",
 contendo as informações de um personagem específico. O documento gerado deve ser no
 formato JSON e nomeado com o nome do personagem (ex: "rick-sanchez.json")
@@ -24,14 +24,14 @@ formato JSON e nomeado com o nome do personagem (ex: "rick-sanchez.json")
 * Locais:
 * Listar Locais e permitir o uso de PAGINAÇÃO e o uso de filtros. Filtros que devem
 estar disponíveis:
- => Listar locais por tipo
- => Listar locais por dimensão
- => Buscar locais por nome
+ => Listar locais por tipo  ✔
+ => Listar locais por dimensão  ✔  
+ => Buscar locais por nome  ✔
 
 * Episódios:
  => Listar episódio e permitir o uso de PAGINAÇÃO
- => Buscar episódio por nome
- => Buscar episódio pela tag "episode". Ex.: { "episode":"S01E01" }
+ => Buscar episódio por nome  ✔
+ => Buscar episódio pela tag "episode". Ex.: { "episode":"S01E01" }  ✔
 
 * (ex: "rick-sanchez.txt").
 
