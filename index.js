@@ -8,6 +8,7 @@ const server = http.createServer((request, response) => {
     const { url } = request
     const { pathname, query } = urlEncode.parse(url)
     log.request(pathname)
+    console.log(pathname)
     const queryParsed = qs.parse(query)
     request.queryParams = queryParsed
     routes[pathname](request, response)
