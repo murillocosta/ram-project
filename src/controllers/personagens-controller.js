@@ -1,15 +1,13 @@
 const Personagens = require('../models/personagens');
 
 class PersonagensController {
-
   static async listTodosPersonagens(req, res) {
-
     try {
       const { page } = req.queryParams;
       if (page && isNaN(page)) {
         throw {
           statusCode: 404,
-          message: 'Limit must be a number'
+          message: 'Page must be a number'
         }
       }
       const options = {
@@ -18,25 +16,21 @@ class PersonagensController {
         }
       }
       const personagens = await Personagens.listPersonagens(options);
-
       res.writeHead(200);
       res.end(JSON.stringify(personagens));
-
     } catch (error) {
       res.writeHead(error.statusCode || 500)
       res.end(JSON.stringify({ message: error.message || 'Server Error' }))
     }
-
   }
-
+  
   static async listPersonagensPorNome(req, res) {
     try {
       const { name } = req.queryParams;
       if (!name || typeof (name) !== 'string') {
-
         throw {
           statusCode: 404,
-          message: 'Limit must be a number'
+          message: 'Name must be text type and is require'
         }
       }
       const options = {
@@ -44,9 +38,7 @@ class PersonagensController {
           name: name
         }
       }
-
       const personagensName = await Personagens.listPersonagens(options);
-
       res.writeHead(200);
       res.end(JSON.stringify(personagensName));
 
@@ -59,7 +51,6 @@ class PersonagensController {
   static async listPersonagensPorStatus(req, res) {
     try {
       const { status } = req.queryParams
-
       if (!['alive', 'dead'].includes(status)) {
         throw {
           statusCode: 404,
@@ -84,7 +75,6 @@ class PersonagensController {
   static async listPersonagensPorGenero(req, res) {
     try {
       const { gender } = req.queryParams;
-
       if (!['female', 'male'].includes(gender)) {
         throw {
           statusCode: 404,
@@ -118,6 +108,29 @@ class PersonagensController {
       const personagensId = await Personagens.listPersonagensId(id)
       res.writeHead(200);
       res.end(JSON.stringify(personagensId));
+    } catch (error) {
+      res.writeHead(error.statusCode || 500)
+      res.end(JSON.stringify({ message: error.message || 'Server Error' }))
+    }
+  }
+
+  static async listPersonagensPorEspecie(req, res) {
+    try {
+      const { species } = req.queryParams;
+      if (!species || typeof (species) !== 'string') {
+        throw {
+          statusCode: 404,
+          message: 'Species must be text type'
+        }
+      }
+      const options = {
+        params: {
+          species: species
+        }
+      }
+      const personagensSpecies = await Personagens.listPersonagens(options);
+      res.writeHead(200);
+      res.end(JSON.stringify(personagensSpecies));
 
     } catch (error) {
       res.writeHead(error.statusCode || 500)
