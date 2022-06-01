@@ -30,7 +30,11 @@ class PersonagensController {
       if (!name || typeof (name) !== 'string') {
         throw {
           statusCode: 404,
+<<<<<<< Updated upstream
           message: 'Name must be text type and is require'
+=======
+          message: 'Limit must be a string'
+>>>>>>> Stashed changes
         }
       }
       const options = {
