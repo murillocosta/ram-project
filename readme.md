@@ -20,20 +20,20 @@
 
 ### Common setup:
 
-Clone the repo:
+#### Clone the repo:
 
 ``` 
 git clone https://github.com/murillocosta/rickandmorty-project.git 
 ```
-Install dependencies:
+#### Install dependencies:
 
 ```
 npm install
 ```
 
-Running app:
+#### Running app:
 
-On the root directory of the application:
+##### On the root directory of the application:
 
 ```
 node index.js
