@@ -12,3 +12,28 @@
 #### 🔧 Developed using:
 
 ![image](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+
+#### What will you need to run this application:
+
+- Node.Js
+- Git
+
+### Common setup:
+
+Clone the repo:
+
+``` 
+git clone https://github.com/murillocosta/rickandmorty-project.git 
+```
+Install dependencies:
+
+```
+npm install
+```
+
+Running app:
+On the root directory of the application:
+
+```
+node index.js
+```
