@@ -32,6 +32,7 @@ npm install
 ```
 
 Running app:
+
 On the root directory of the application:
 
 ```
