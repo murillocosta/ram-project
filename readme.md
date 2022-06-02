@@ -7,7 +7,7 @@
 #### 👩🏾‍💻 Developed by:
 - [Letícia Pardini](https://github.com/leticiapardini)
 - [Murillo Costa](https://github.com/murillocosta)
-- [Ruan Carlo](https://github.com/murillocosta)
+- [Ruan Carlo](https://github.com/rucp)
 
 #### 🔧 Developed using:
 
