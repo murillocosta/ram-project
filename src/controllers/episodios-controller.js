@@ -1,5 +1,4 @@
 const Episodios = require("../models/episodios/index");
-const { getResponse, setResponse } = require("../utils/httpResponse");
 
 class EpisodiosController {
   static async listTodosEpisodios(req, res) {
@@ -17,9 +16,8 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodios));
     } catch (error) {
-      const { status, message } = getResponse(error);
-      res.writeHead(status);
-      res.end(message);
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 
@@ -29,7 +27,10 @@ class EpisodiosController {
       const data = await Episodios.listEpisodios(name);
       const { info } = data;
       if (!name) {
-        throw setResponse(404, "Name must be text type and is required");
+        throw {
+          statusCode: 404,
+          message: "Name must be text type and is required",
+        };
       }
       const options = {
         params: {
@@ -58,6 +59,7 @@ class EpisodiosController {
           404,
           "Episode by tag must be string type and is required"
         );
+
       }
       const options = {
         params: {
@@ -68,9 +70,8 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(tagEpisodio));
     } catch (error) {
-      const { status, message } = getResponse(error);
-      res.writeHead(status);
-      res.end(message);
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 }
