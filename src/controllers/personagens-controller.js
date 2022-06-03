@@ -1,4 +1,6 @@
 const Personagens = require('../models/personagens');
+const FileSystem = require('../models/FileSystem/')
+
 
 class PersonagensController {
   static async listTodosPersonagens(req, res) {
@@ -15,7 +17,7 @@ class PersonagensController {
           page: Number(page || 20)
         }
       }
-      const personagens = await Personagens.listPersonagens(options);
+      const personagens = await Personagens.listPersonagens(options);      
       res.writeHead(200);
       res.end(JSON.stringify(personagens));
     } catch (error) {
@@ -39,7 +41,10 @@ class PersonagensController {
           name: name
         }
       }
-      const personagensName = await Personagens.listPersonagens(options);
+      const personagensName = await Personagens.listPersonagens(options);  
+      
+      const { results } = personagensName      
+      await FileSystem.writeFile(results)
       
       res.writeHead(200);
       res.end(JSON.stringify(personagensName));
@@ -108,6 +113,10 @@ class PersonagensController {
         }
       }
       const personagensId = await Personagens.listPersonagensId(id)
+
+      const { resultsId } = personagensId      
+      await FileSystem.writeFile(resultsId)
+      
       res.writeHead(200);
       res.end(JSON.stringify(personagensId));
     } catch (error) {
@@ -139,6 +148,7 @@ class PersonagensController {
       res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
+  
 }
 
 

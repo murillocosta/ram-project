@@ -1,4 +1,5 @@
 const rickandmortyapi = require("../../config/rickyandmorty-api");
+const fs = require('fs')
 
 class Personagens {
   static async listPersonagens(options) {
@@ -12,6 +13,7 @@ class Personagens {
     console.log(data)
     return data
   }
+
 }
 
 module.exports = Personagens;
