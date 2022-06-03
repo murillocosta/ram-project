@@ -3,13 +3,6 @@ const LocaisController = require("../controllers/locais-controller");
 const EpisodiosController = require("../controllers/episodios-controller");
 
 module.exports = {
-  "/rickandmorty": PersonagensController.listTodosPersonagens,
-  "/rickandmorty/personagem-nome": PersonagensController.listPersonagensPorNome,
-  "/rickandmorty/personagem-id": PersonagensController.listPersonagensPorId,
-  "/rickandmorty/personagens-status":
-    PersonagensController.listPersonagensPorStatus,
-  "/rickandmorty/personagens-genero":
-    PersonagensController.listPersonagensPorGenero,
   "/rickandmorty-page": PersonagensController.listTodosPersonagens,
   "/rickandmorty/personagem-nome": PersonagensController.listPersonagensPorNome,
   "/rickandmorty/personagem-id": PersonagensController.listPersonagensPorId,

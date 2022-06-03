@@ -1,4 +1,4 @@
-const Locais = require('../models/locais/index')
+const Locais = require('../models/locais')
 
 class LocaisController {
   static async listLocaisPage(req,res){
@@ -13,14 +13,14 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocais));
     } catch (error) {
-      res.writeHead(error.statusCode || 500)
-      res.end(JSON.stringify({ message: error.message || 'Server Error' }))
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
   static async listLocaisPorTipo(req,res){
     try {
       const { type } = req.queryParams;
-      if(!type || !isNaN(type)){
+      if(!type){
         throw {
           statusCode: 400,
           message: 'Type must be text type and is require'
@@ -35,14 +35,14 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisTipo));
     } catch (error) {
-      res.writeHead(error.statusCode || 500)
-      res.end(JSON.stringify({ message: error.message || 'Server Error' }))
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
   static async listLocaisPorDimensao(req,res){
     try {
       const { dimension } = req.queryParams;
-      if(!dimension || !isNaN(dimension)){
+      if(!dimension){
         throw {
           statusCode: 400,
           message: 'Dimension must be text type and is require'
@@ -57,14 +57,14 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisDimensao));
     } catch (error) {
-      res.writeHead(error.statusCode || 500)
-      res.end(JSON.stringify({ message: error.message || 'Server Error' }))
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
   static async listLocaisPorNome(req,res){
     try {
       const { name } = req.queryParams;
-      if(!name || !isNaN(name)){
+      if(!name){
           throw {
             statusCode: 400,
             message: 'Name must be text type and is require'
@@ -79,8 +79,8 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisName));
     } catch (error) {
-      res.writeHead(error.statusCode || 500)
-      res.end(JSON.stringify({ message: error.message || 'Server Error' }))
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 }

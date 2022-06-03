@@ -19,15 +19,15 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodios));
     } catch (error) {
-      res.writeHead(error.statusCode || 500);
-      res.end(JSON.stringify({ message: error.message || "Server Error" }));
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 
   static async listEpisodioPorNome(req, res) {
     try {
       const { name } = req.queryParams;
-      if (!name || typeof name !== "string") {
+      if (!name) {
         throw {
           statusCode: 404,
           message: "Name must be text type and is required",
@@ -42,15 +42,15 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodiosName));
     } catch (error) {
-      res.writeHead(error.statusCode || 500);
-      res.end(JSON.stringify({ message: error.message || "Server Error" }));
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 
   static async listEpisodiosPorTag(req, res) {
     try {
       const { episode } = req.queryParams;
-      if (!episode || typeof episode !== "string") {
+      if (!episode) {
         throw {
           statusCode: 404,
           message: "Episode by tag must be string type and is required",
@@ -65,8 +65,8 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(tagEpisodio));
     } catch (error) {
-      res.writeHead(error.statusCode || 500);
-      res.end(JSON.stringify({ message: error.message || "Server Error" }));
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 }
