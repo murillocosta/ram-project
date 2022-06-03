@@ -1,12 +1,14 @@
 const Episodios = require("../models/episodios/index");
-const { getResponse, setResponse } = require("../utils/httpResponse");
 
 class EpisodiosController {
   static async listTodosEpisodios(req, res) {
     try {
       const { page } = req.queryParams;
-      if (!page || isNaN(page)) {
-        throw setResponse(404, "Page must be a number");
+      if (page && isNaN(page)) {
+        throw {
+          statusCode: 404,
+          message: "Page must be a number",
+        };
       }
       const options = {
         params: {
@@ -17,9 +19,8 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodios));
     } catch (error) {
-      const { status, message } = getResponse(error);
-      res.writeHead(status);
-      res.end(message);
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 
@@ -27,7 +28,10 @@ class EpisodiosController {
     try {
       const { name } = req.queryParams;
       if (!name) {
-        throw setResponse(404, "Name must be text type and is required");
+        throw {
+          statusCode: 404,
+          message: "Name must be text type and is required",
+        };
       }
       const options = {
         params: {
@@ -38,16 +42,15 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodiosName));
     } catch (error) {
-      const { status, message } = getResponse(error);
-      res.writeHead(status);
-      res.end(message);
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 
   static async listEpisodiosPorTag(req, res) {
     try {
       const { episode } = req.queryParams;
-      if (episode || typeof episode !== "string") {
+      if (!episode) {
         throw {
           statusCode: 404,
           message: "Episode by tag must be string type and is required",
@@ -62,9 +65,8 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(tagEpisodio));
     } catch (error) {
-      const { status, message } = getResponse(error);
-      res.writeHead(status);
-      res.end(message);
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
     }
   }
 }
