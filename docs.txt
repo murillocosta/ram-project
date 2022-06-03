@@ -22,8 +22,8 @@ contendo as informações de um personagem específico. O documento gerado deve 
 formato JSON e nomeado com o nome do personagem (ex: "rick-sanchez.json")
 
 * Locais:
-* Listar Locais e permitir o uso de PAGINAÇÃO e o uso de filtros. Filtros que devem
-estar disponíveis:
+=> Listar Locais e permitir o uso de PAGINAÇÃO e o uso de filtros. 
+* Filtros que devem estar disponíveis:
  => Listar locais por tipo  ✔
  => Listar locais por dimensão  ✔  
  => Buscar locais por nome  ✔

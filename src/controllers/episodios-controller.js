@@ -5,7 +5,7 @@ class EpisodiosController {
   static async listTodosEpisodios(req, res) {
     try {
       const { page } = req.queryParams;
-      if (!page || isNaN(page)) {
+      if (page && isNaN(page)) {
         throw setResponse(404, "Page must be a number");
       }
       const options = {
@@ -26,6 +26,8 @@ class EpisodiosController {
   static async listEpisodioPorNome(req, res) {
     try {
       const { name } = req.queryParams;
+      const data = await Episodios.listEpisodios(name);
+      const { info } = data;
       if (!name) {
         throw setResponse(404, "Name must be text type and is required");
       }
@@ -40,18 +42,22 @@ class EpisodiosController {
     } catch (error) {
       const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message);
+      res.end(
+        JSON.stringify({
+          message: error.message || "Server Error",
+        })
+      );
     }
   }
 
   static async listEpisodiosPorTag(req, res) {
     try {
       const { episode } = req.queryParams;
-      if (episode || typeof episode !== "string") {
-        throw {
-          statusCode: 404,
-          message: "Episode by tag must be string type and is required",
-        };
+      if (!episode || typeof episode !== "string") {
+        throw setResponse(
+          404,
+          "Episode by tag must be string type and is required"
+        );
       }
       const options = {
         params: {
