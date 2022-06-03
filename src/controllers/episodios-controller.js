@@ -5,10 +5,7 @@ class EpisodiosController {
     try {
       const { page } = req.queryParams;
       if (page && isNaN(page)) {
-        throw {
-          statusCode: 404,
-          message: "Page must be a number",
-        };
+        throw setResponse(404, "Page must be a number");
       }
       const options = {
         params: {
@@ -27,6 +24,8 @@ class EpisodiosController {
   static async listEpisodioPorNome(req, res) {
     try {
       const { name } = req.queryParams;
+      const data = await Episodios.listEpisodios(name);
+      const { info } = data;
       if (!name) {
         throw {
           statusCode: 404,
@@ -42,19 +41,25 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodiosName));
     } catch (error) {
-      res.writeHead(error.response.status || 500)
-      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+      const { status, message } = getResponse(error);
+      res.writeHead(status);
+      res.end(
+        JSON.stringify({
+          message: error.message || "Server Error",
+        })
+      );
     }
   }
 
   static async listEpisodiosPorTag(req, res) {
     try {
       const { episode } = req.queryParams;
-      if (!episode) {
-        throw {
-          statusCode: 404,
-          message: "Episode by tag must be string type and is required",
-        };
+      if (!episode || typeof episode !== "string") {
+        throw setResponse(
+          404,
+          "Episode by tag must be string type and is required"
+        );
+
       }
       const options = {
         params: {
