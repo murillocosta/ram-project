@@ -14,6 +14,11 @@ class Personagens {
     return data
   }
 
+  static async listPersonagensPorOrigem() {
+    const {data} = await rickandmortyapi.get('/character')
+     return data
+   }
+
 }
 
 module.exports = Personagens;
