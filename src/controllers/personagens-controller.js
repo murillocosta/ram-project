@@ -35,11 +35,7 @@ class PersonagensController {
         return;
       }
       const personagensName = await Personagens.listPersonagens(options);  
-      
-      
-      // const { results } = personagensName      
-      // await FileSystem.writeFile(results)
-      
+                  
       res.writeHead(200);
       res.end(JSON.stringify(personagensName));
 
@@ -105,10 +101,7 @@ class PersonagensController {
         return;
       }
       const personagensId = await Personagens.listPersonagensId(id)
-
-      // const { resultsId } = personagensId      
-      // await FileSystem.writeFile(resultsId)
-      
+           
       res.writeHead(200);
       res.end(JSON.stringify(personagensId));
     } catch (error) {
@@ -164,6 +157,34 @@ class PersonagensController {
     }
   }
 
+  static async createPersonagensPorNome(req, res) {
+    try {
+      const { name } = req.queryParams;
+      
+       const options = {
+        params: {
+          name: name || undefined,
+        }
+      };
+      if (name === undefined) {
+        res.writeHead(400);
+        res.end('Name is required');
+        return;
+      }
+      const personagensName = await Personagens.listPersonagens(options);  
+      
+      
+      const { results } = personagensName      
+      await FileSystem.writeFile(results)
+      
+      res.writeHead(200);
+      res.end(JSON.stringify(personagensName));
+
+    } catch (error) {
+      res.writeHead(error.response.status || 500)
+      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+    }
+  }
   
 }
 

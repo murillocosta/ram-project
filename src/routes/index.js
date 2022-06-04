@@ -18,5 +18,5 @@ module.exports = {
   "/rickandmorty/episodios": EpisodiosController.listTodosEpisodios,
   '/rickandmorty/episodio-nome': EpisodiosController.listEpisodioPorNome,
   '/rickandmorty/episodio-tag': EpisodiosController.listEpisodiosPorTag,
-  
+  '/rickandmorty/criarjson-personagem/': PersonagensController.createPersonagensPorNome,
 };
