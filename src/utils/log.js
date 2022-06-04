@@ -1,9 +1,6 @@
-const {
-    DateTime
-} = require('luxon')
+const { DateTime } = require("luxon");
 
-exports.request = path => {
-    const dt = DateTime.now()
-    return console.info(`[REQUEST: ${path}] => ${dt.toISO()}`)
-}
-
+exports.request = (path) => {
+  const dt = DateTime.now();
+  return console.info(`[REQUEST: ${path}] => ${dt.toISO()}`);
+};

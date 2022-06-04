@@ -1,6 +1,6 @@
 const Personagens = require("../models/personagens");
 const FileSystem = require("../models/FileSystem/");
-const {getResponse} = require('../utils/httpResponse')
+const { getResponse } = require("../utils/httpResponse");
 
 class PersonagensController {
   static async listTodosPersonagens(req, res) {
@@ -15,10 +15,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagens));
     } catch (error) {
-      const { status, message} = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -41,10 +40,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensName));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -65,10 +63,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensStatus));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -89,10 +86,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensGenero));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -109,10 +105,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensId));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -134,10 +129,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensSpecies));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -161,10 +155,9 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(filtro));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
+      res.end(message);
     }
   }
 
@@ -191,11 +184,9 @@ class PersonagensController {
       await res.writeHead(200);
       await res.end(JSON.stringify(personagensName));
     } catch (error) {
-      const { status, message } = getResponse(error)
+      const { status, message } = getResponse(error);
       res.writeHead(status);
-      res.end(message)
-      
-      
+      res.end(message);
     }
   }
 }
