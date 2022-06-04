@@ -5,12 +5,6 @@ class EpisodiosController {
   static async listTodosEpisodios(req, res) {
     try {
       const { page } = req.queryParams;
-      // if (page && isNaN(page)) {
-      //   throw {
-      //     statusCode: 404,
-      //     message: "Page must be a number",
-      //   };
-      // }
       const options = {
         params: {
           page: Number(page || 1),
@@ -32,17 +26,16 @@ class EpisodiosController {
   static async listEpisodioPorNome(req, res) {
     try {
       const { name } = req.queryParams;
-      // if (!name) {
-      //   throw {
-      //     statusCode: 404,
-      //     message: "Name must be text type and is required",
-      //   };
-      // }
       const options = {
         params: {
           name: name,
         },
       };
+      if (name === undefined) {
+        res.writeHead(400);
+        res.end('Name is required');
+        return
+      }
       const episodiosName = await Episodios.listEpisodios(options);
       res.writeHead(200);
       res.end(JSON.stringify(episodiosName));
@@ -59,17 +52,17 @@ class EpisodiosController {
   static async listEpisodiosPorTag(req, res) {
     try {
       const { episode } = req.queryParams;
-      // if (!episode) {
-      //   throw {
-      //     statusCode: 404,
-      //     message: "Episode by tag must be string type and is required",
-      //   };
-      // }
+     
       const options = {
         params: {
-          episode: episode,
+          episode: episode || undefined,
         },
       };
+      if (episode === undefined) {
+        res.writeHead(400);
+        res.end('Episode is required');
+        return
+      }
       const tagEpisodio = await Episodios.listEpisodios(options);
       res.writeHead(200);
       res.end(JSON.stringify(tagEpisodio));

@@ -20,16 +20,15 @@ class LocaisController {
   static async listLocaisPorTipo(req,res){
     try {
       const { type } = req.queryParams;
-      if(!type){
-        throw {
-          statusCode: 400,
-          message: 'Type must be text type and is require'
-        }
-    }
       const options = {
         params: {
-          type: type
+          type: type || undefined,
         }
+      };
+      if (type === undefined) {
+        res.writeHead(400);
+        res.end('Type is required');
+        return
       }
       const listLocaisTipo = await Locais.lisLocais(options);
       res.writeHead(200);
@@ -42,16 +41,15 @@ class LocaisController {
   static async listLocaisPorDimensao(req,res){
     try {
       const { dimension } = req.queryParams;
-      if(!dimension){
-        throw {
-          statusCode: 400,
-          message: 'Dimension must be text type and is require'
-        }
-    }
       const options = {
         params: {
-          dimension: dimension
+          dimension: dimension || undefined,
         }
+      };
+      if (dimension === undefined) {
+        res.writeHead(400);
+        res.end('Dimension is required');
+        return
       }
       const listLocaisDimensao = await Locais.lisLocais(options);
       res.writeHead(200);
@@ -64,16 +62,15 @@ class LocaisController {
   static async listLocaisPorNome(req,res){
     try {
       const { name } = req.queryParams;
-      if(!name){
-          throw {
-            statusCode: 400,
-            message: 'Name must be text type and is require'
-          }
-      }
       const options = {
         params: {
-          name: name
+          name: name || undefined,
         }
+      };
+      if (name === undefined) {
+        res.writeHead(400);
+        res.end('Name is required');
+        return
       }
       const listLocaisName = await Locais.lisLocais(options);
       res.writeHead(200);
