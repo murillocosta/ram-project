@@ -2,7 +2,7 @@ const log = require("../utils/log");
 
 exports.getResponse = (error) => {
   return {
-    status: error.status || 500,
+    status: error.statusCode || 500,
     message: JSON.stringify({ message: error.message || "Server Error" }),
   };
 };
