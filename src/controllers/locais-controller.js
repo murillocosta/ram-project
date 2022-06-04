@@ -1,4 +1,5 @@
-const Locais = require('../models/locais')
+const Locais = require('../models/locais');
+const {getResponse} = require('../utils/httpResponse')
 
 class LocaisController {
   static async listLocaisPage(req,res){
@@ -13,8 +14,9 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocais));
     } catch (error) {
-      res.writeHead(error.response.status || 500)
-      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
   static async listLocaisPorTipo(req,res){
@@ -34,8 +36,9 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisTipo));
     } catch (error) {
-      res.writeHead(error.response.status || 500)
-      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
   static async listLocaisPorDimensao(req,res){
@@ -55,8 +58,9 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisDimensao));
     } catch (error) {
-      res.writeHead(error.response.status || 500)
-      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
   static async listLocaisPorNome(req,res){
@@ -76,8 +80,9 @@ class LocaisController {
       res.writeHead(200);
       res.end(JSON.stringify(listLocaisName));
     } catch (error) {
-      res.writeHead(error.response.status || 500)
-      res.end(JSON.stringify({ message: error.response.data['error'] || 'Server Error' }))
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
 }
