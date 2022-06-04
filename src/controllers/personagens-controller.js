@@ -1,5 +1,6 @@
 const Personagens = require("../models/personagens");
 const FileSystem = require("../models/FileSystem/");
+const {getResponse} = require('../utils/httpResponse')
 
 class PersonagensController {
   static async listTodosPersonagens(req, res) {
@@ -14,12 +15,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagens));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -42,12 +41,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensName));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -68,12 +65,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensStatus));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -94,12 +89,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensGenero));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -116,12 +109,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensId));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -143,12 +134,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(personagensSpecies));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -172,12 +161,10 @@ class PersonagensController {
       res.writeHead(200);
       res.end(JSON.stringify(filtro));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
     }
   }
 
@@ -201,15 +188,14 @@ class PersonagensController {
       const { results } = personagensName;
       await FileSystem.writeFile(results);
 
-      res.writeHead(200);
-      res.end(JSON.stringify(personagensName));
+      await res.writeHead(200);
+      await res.end(JSON.stringify(personagensName));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message } = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
+      
+      
     }
   }
 }

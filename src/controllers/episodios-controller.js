@@ -1,5 +1,5 @@
 const Episodios = require("../models/episodios/index");
-const { getResponse, setResponse } = require("../utils/httpResponse");
+const { getResponse} = require("../utils/httpResponse");
 
 class EpisodiosController {
   static async listTodosEpisodios(req, res) {
@@ -14,12 +14,9 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodios));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
 
@@ -40,12 +37,9 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(episodiosName));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
 
@@ -67,12 +61,9 @@ class EpisodiosController {
       res.writeHead(200);
       res.end(JSON.stringify(tagEpisodio));
     } catch (error) {
-      res.writeHead(error.response.status || 500);
-      res.end(
-        JSON.stringify({
-          message: error.response.data["error"] || "Server Error",
-        })
-      );
+      const { status, message} = getResponse(error)
+      res.writeHead(status);
+      res.end(message)
     }
   }
 }
