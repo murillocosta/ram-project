@@ -15,6 +15,7 @@ module.exports = {
   "/rickandmorty/locais-tipo": LocaisController.listLocaisPorTipo,
   "/rickandmorty/locais-dimensao": LocaisController.listLocaisPorDimensao,
   "/rickandmorty/locais-nome": LocaisController.listLocaisPorNome,
+  
   "/rickandmorty/episodios": EpisodiosController.listTodosEpisodios,
   '/rickandmorty/episodio-nome': EpisodiosController.listEpisodioPorNome,
   '/rickandmorty/episodio-tag': EpisodiosController.listEpisodiosPorTag,
